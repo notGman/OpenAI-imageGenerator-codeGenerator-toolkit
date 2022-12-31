@@ -6,13 +6,15 @@ import { ThreeDots } from "react-loader-spinner";
 
 const Image_generator = () => {
   const [prompt, setPrompt] = useState("");
+  const [modaldata,setModalData] = useState("");
   const [response, setResponse] = useState("");
-  const [size, setSize] = useState("");
+  const [size, setSize] = useState("256x256");
   const [spinner,setSpinner] = useState("");
   const [error,setError] = useState("")
 
   const handleChange = (e) => {
     setPrompt(e.target.value);
+    setModalData(e.target.value);
     setResponse("");
     setSpinner("")
   };
@@ -44,10 +46,11 @@ const Image_generator = () => {
   };
 
   return (
-    <div className="Image_generator bg-dark vh-100" style={{ paddingTop: "190px" }}>
+    <div style={{position:'fixed'}}>
+    <div className="Image_generator bg-dark vh-100 d-flex flex-column justify-content-center">
       <h1 className="text-light text-center">AI Image Generator</h1>
       <Form className="text-center mt-4">
-        <Form.Group className="w-50 mx-auto mb-2">
+        <Form.Group className="w-75 mx-auto mb-2">
           <Form.Control as="textarea" rows={1} onChange={handleChange} value={prompt}>
             Ask the AI anything...
           </Form.Control>
@@ -72,7 +75,8 @@ const Image_generator = () => {
           {error && <h2 className="text-danger">Something went wrong...</h2>}
         </div>
       </Form>
-      <div className="vw-100">{response && <Imagemodal image={response} size={size} />}</div>
+      <div className="vw-100">{response && <Imagemodal image={response} size={size} prompt={modaldata} />}</div>
+    </div>
     </div>
   );
 };

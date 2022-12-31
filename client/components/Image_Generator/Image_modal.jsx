@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import FileSaver, {saveAs} from 'file-saver' ;
 
-function Image_modal({image,size}) {
+function Image_modal({image,size,prompt}) {
   const [lgShow, setLgShow] = useState(true);
   const [smShow, setSmShow] = useState(true);
   const [show, setShow] = useState(true);
+
+  const handleDownload = () =>{
+    saveAs(image,prompt)
+  }
 
   return (
     <>
@@ -16,8 +21,9 @@ function Image_modal({image,size}) {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-sm">
-            Small Modal
+          <Modal.Title id="example-modal-sizes-title-sm" className='w-100 d-flex justify-content-between'>
+            {prompt}
+            <Button onClick={handleDownload} className='mx-2'>Download</Button>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className='text-center'>
@@ -33,8 +39,9 @@ function Image_modal({image,size}) {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg">
-            Large Modal
+          <Modal.Title id="example-modal-sizes-title-lg" className='w-100 d-flex justify-content-between'>
+            {prompt}
+            <Button onClick={handleDownload} className='mx-2'>Download</Button>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className='text-center'>
@@ -50,8 +57,9 @@ function Image_modal({image,size}) {
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg">
-            Large Modal
+          <Modal.Title id="example-modal-sizes-title-lg" className='w-100 d-flex justify-content-between'>
+            {prompt}
+            <Button onClick={handleDownload} className='mx-2'>Download</Button>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body className='text-center'>

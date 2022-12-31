@@ -15,7 +15,7 @@ app.use(cors({
   origin: '*'
 }));
 
-app.get("/openai", (req, res) => {
+app.get("/openai/generateimage", (req, res) => {
   res.status(200).json("Hello from the server");
 });
 
@@ -35,6 +35,29 @@ app.post("/openai/generateimage", async (req, res) => {
     console.log(error);
   }
 });
+
+app.get('/openai/chatbot',(req,res)=>{
+  res.status(200).json("Hello from the chatbot server")
+})
+
+app.post('/openai/chatbot',async(req,res)=>{
+  try {
+    const {prompt} = req.body
+    const response = await openai.createCompletion({
+      model:"text-davinci-003",
+      prompt,
+      max_tokens: 3000,
+      frequency_penalty:0.2,
+    })
+    // console.log(response.data.choices[0].text);
+    const code = response.data.choices[0].text
+    res.status(200).json({
+      code:code
+    })
+  } catch (error) {
+    console.log(error);
+  }
+})
 
 const port = process.env.PORT;
 app.listen(port, (req, res) => {
