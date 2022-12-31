@@ -1,5 +1,5 @@
 
-# OpenAI_Image_Generator
+# OpenAI Image-generator and Chatbot
 
 This site uses OpenAI's image generation tool to generate various images
 ## Environment Variables
@@ -17,7 +17,7 @@ Generate your API key here https://beta.openai.com/account/api-keys
 Clone the project
 
 ```bash
-  git clone https://github.com/notGman/OpenAI_imagegenerator
+  git clone https://github.com/notGman/OpenAI_Projects
 ```
 
 Go to the project directory
@@ -35,7 +35,7 @@ Install dependencies
 Start the server
 
 ```bash
-  npm run start
+  npm start
 ```
 
 Start the client
